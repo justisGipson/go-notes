@@ -1,3 +1,13 @@
+# Reference vs Value Types
+| Value Types (Use pointer) | Reference Types (no pointer needed) |
+| ------------------------- | ----------------------------------- |
+| int                       | slices                              |
+| float                     | maps                                |
+| string                    | channels                            |
+| bool                      | pointers                            |
+| struct                    | functions                           |
+
+
 # Memory: Stack vs Heap
 
 -   Go’s runtime creates 1 stack per goroutine.
