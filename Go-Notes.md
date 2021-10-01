@@ -24,7 +24,6 @@
 - Use to represent a "thing" with a lot of different properties
 - Value Type!
 
-
 # Memory: Stack vs Heap
 
 -   Go’s runtime creates 1 stack per goroutine.
@@ -125,6 +124,42 @@ var arr []string // declares slice, nil value
 arr := make([]string, 3) //declares and initializes slice [“”,””,””]`
 ```
 # Interfaces
+
+We know that...
+  - Every value has a type
+  - Every function has to specify the type of its arguments
+
+So does that mean...
+  - Every function we ever write has to be rewritten to accommodate different types even if the logic in it is identical?
+
+instantiates a new type that can be accessed by any other type with a function that has the same name bit only if they return the same type
+
+multiple types with the same function, but specific to that type can use the interface to extend
+
+interfaces define a method/function set - what functions and return types it should have
+
+### Concrete types
+Can create a value out of this type
+- map
+- struct
+- int
+- string
+
+### Interface type
+Can't create a value out of this type
+- interface
+
+Interfaces are not generic types
+Interfaces are `implicit`
+  - don't have to declare that our custom type satisfies some interface
+  - Helps with the DRY code battle
+  - Hard to keep track of which types implement which interfaces
+Interfaces are a "contract" to help us manage types - Garbage in >> garbage out!
+  - if our custom types implementation of a function is broken - an interface will not help
+Interfaces are tough. Step #1: Understand how to read them
+  - understand how to read interfaces in the standard lib. Writing your own is tough and requires experience
+  - Not a requirement of the language, no need to write custom interfaces
+
 
 ## Compile time check
 
