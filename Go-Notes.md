@@ -35,7 +35,7 @@ Sharing down **typically** stays on the stackSharing up **typically** escapes to
 
 Only the compiler knows for sure when typically is not typically
 
-To get accurate information build your program with gcflags
+To get accurate information build your program with `gcflags`
 
 `go build -gcflags=”-m -l” program.go`
 
@@ -43,17 +43,22 @@ To get accurate information build your program with gcflags
 
 - If it could possibly be referenced after the function returns- When a value is too big for the stack- When the compiler doesn’t know the size in compile time
 
--   Don’t do premature optimisations, relay on data and find problems before fixing them. Use profilers and analysis tools to find the root.
+-   Don’t do premature optimizations, relay on data and find problems before fixing them. Use profilers and analysis tools to find the root.
 
-# Goroutines
+# Go-routines
 
 -   Every Go program has at least one goroutine: the _main goroutine_, which is automatically created and started when the process begins.
 -   A goroutine is a function that is running concurrently. Notice the difference between concurrence and parallelism.
 -   They’re not OS threads, they’re a higher level of abstraction known as coroutines. Coroutines are simply concurrent subroutines that are nonpreemptive (they cannot be interrupted).
--   Go follows a fork-join model for launching and waiting for goroutines.
+-   Go follows a fork-join model for launching and waiting for go-routines.
 -   **Leak prevention**: The way to successfully mitigate this is to establish a signal between the parent goroutine and its children that allows the parent to signal cancellation to its children. By convention, this signal is usually a read-only channel named _done_. The parent goroutine passes this channel to the child goroutine and then closes the channel when it wants to cancel the child goroutine.
 -   If a goroutine is responsible for creating a goroutine, it is also responsible for ensuring it can stop the goroutine.
--   For better error handling inside goroutines create a struct that wraps both possible result and possible error. Return a channel of this struct.
+-   For better error handling inside go-routines create a struct that wraps both possible result and possible error. Return a channel of this struct.s
+-   Concurrency is not Parallelism
+
+Concurrency in a program: we have multiple threads executing code; if one thread blocks, another is picked up and executed. Always on one "core". All this is is saying work can be scheduled to be done
+
+Parallelism in a program: multiple threads executed at the exact same time. Requires more than one CPU/core. Can do multiple things at the exact same point in time.
 
 # Sync package
 
